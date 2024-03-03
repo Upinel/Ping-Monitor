@@ -16,6 +16,7 @@ echo "+----------------------------------------------------------------------+"
 echo "| Author: Nova Upinel Chow  <dev@upinel.com>                           |"
 echo "| Date:   03/Marb/2024                                                 |"
 echo "+----------------------------------------------------------------------+"
+echo "The Ping-Monitor is now running..."
 
 # Initialize variables
 success_count=0
