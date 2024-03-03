@@ -14,7 +14,7 @@ echo "| to obtain it through the world-wide-web, please send a note to       |"
 echo "| license@swoole.com so we can mail you a copy immediately.            |"
 echo "+----------------------------------------------------------------------+"
 echo "| Author: Nova Upinel Chow  <dev@upinel.com>                           |"
-echo "| Date:   03/Marb/2024                                                 |"
+echo "| Date:   03/Mar/2024                                                  |"
 echo "+----------------------------------------------------------------------+"
 echo "The Ping-Monitor is now running..."
 
