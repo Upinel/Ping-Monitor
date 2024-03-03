@@ -22,6 +22,8 @@ success_count=0
 error_message=""
 last_three_success=()
 LOG_FILE="ping_event.log"
+normal_log_interval=600 # Log normal operation every 600 seconds (10 minutes)
+last_log_time=$(date +%s)
 
 # Function to write to the log file with a timestamp
 write_log() {
@@ -36,6 +38,15 @@ log_success() {
   local timestamp="$2"
   # Prepend to the success ping array and keep only the last 3 elements
   last_three_success=("$timestamp icmp_seq=$icmp_seq" "${last_three_success[@]:0:2}")
+}
+
+# Function to log normal operation
+log_normal_operation() {
+  local timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+  write_log "Normal operation"
+  for i in "${last_three_success[@]}"; do
+    echo "   Last successful ping: $i" >> $LOG_FILE
+  done
 }
 
 # Function to log errors and the last three successful pings
@@ -93,6 +104,14 @@ while true; do
     fi
     ((success_count--))
   fi
+
+  # Check if 10 minutes have passed to log normal operation
+  current_time=$(date +%s)
+  if (( current_time - last_log_time >= normal_log_interval )); then
+    log_normal_operation
+    last_log_time=$current_time
+  fi
+  
   sleep 1
 done
 
